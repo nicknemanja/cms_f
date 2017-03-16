@@ -3,7 +3,7 @@
 function getDirContents($dir, &$results = array()) {
     $files = scandir($dir);
 
-    foreach ($files as $key => $value) {
+    foreach ($files as $value) {
         $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
         if (!is_dir($path)) {
             $results[] = $path;
@@ -25,10 +25,6 @@ spl_autoload_register(function($class) {
     }
 });
 
-function render($page, $params = []) {
-
-    var_dump($_SESSION);
-    
-
+function render($page) {
     header("Location: render.php?view=" . $page);
 }

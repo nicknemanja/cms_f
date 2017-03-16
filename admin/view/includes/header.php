@@ -38,8 +38,11 @@
                         <a class="navbar-brand" href="index.php">Početna</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <?php if(User::isLoggedIn()) { ?>
-                            
+                        <?php if (User::isLoggedIn()) { ?>
+                            <li><a href = "index.php?view=users"><span class = "glyphicon glyphicon glyphicon-user"></span>Korisnici</a></li>
+                            <li><a href = "index.php?view=menuItems"><span class = "glyphicon glyphicon glyphicon-user"></span>Meni stavke</a></li>
+                            <li><a href = "index.php?view=itemCategories"><span class = "glyphicon glyphicon-folder-close"></span>Kategorije clanaka</a></li>
+                            <li><a href = "index.php?view=articles"><span class = "glyphicon glyphicon-file"></span>Clanci</a></li>
                         <?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

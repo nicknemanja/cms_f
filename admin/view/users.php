@@ -1,2 +1,1 @@
-<?php
-
+<h1>Korisnici stranica</h1>

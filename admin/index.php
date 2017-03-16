@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -25,6 +26,15 @@ switch ($view) {
     case 'logout':
         logout();
         break;
+    case 'users':
+        users();
+        break;
+    case 'menuItems':
+        menuItems();
+        break;
+    case 'itemCategories':
+        itemCategories();
+        break;
     case 'articles':
         articles();
         break;
@@ -35,19 +45,30 @@ switch ($view) {
 function index() {
     //TODO "Morate biti logovani"
     UserController::login();
-    render('login');
 }
 
 function login() {
 
-    $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $username = isset($_POST['username']) ? filter_input(INPUT_POST, 'username') : '';
+    $password = isset($_POST['password']) ? filter_input(INPUT_POST, 'password') : '';
 
     UserController::login($username, $password);
 }
 
 function logout() {
     UserController::logout();
+}
+
+function users() {
+    UserController::showUsers();
+}
+
+function menuItems() {
+    MenuItemController::showMenuItems();
+}
+
+function itemCategories(){
+    ArticleCategoryController::showItemCategories();
 }
 
 function articles() {

@@ -1,2 +1,1 @@
-<?php
-
+<h1>Stavke menija stranica</h1>
