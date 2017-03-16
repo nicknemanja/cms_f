@@ -1,0 +1,6 @@
+Priprema:
+-Sajt sa dve kategorije i više članaka u svakom prikazati pomoću bootstrapa
+-Izmjena članka, odabrati odgovarajuću kategoriju i popuniti text u CKEditor
+-Ajax php
+-Dodavanje jezika
+-Dinamički resize sličice

@@ -4,10 +4,9 @@ if(isset($_SESSION['LOGIN_SUCCESS'])){
     unset($_SESSION['LOGIN_SUCCESS']);
 }
 
+$articles = Article::getList(HOMEPAGE_NUM_OF_ARTICLES);
+
 //TODO prikazati tabelarno sa pagination-om
-//$articles = Article::getList(HOMEPAGE_NUM_OF_ARTICLES);
-
-
 
 ?>
 
