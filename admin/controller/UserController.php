@@ -9,15 +9,14 @@ class UserController {
         } else {
 
             if (User::login($username, $password)) {
+                
                 $_SESSION['isLoggedIn'] = true;
                 $_SESSION['username'] = $username;
                 $_SESSION['user'] = User::getByUsername($username);
                 $_SESSION['LOGIN_SUCCESS'] = "Uspjesno ste logovani.";
-                file_put_contents("login_success.txt", $_SESSION['LOGIN_SUCCESS']);
                 render('index');
             } else {
                 $_SESSION['LOGIN_FAIL'] = "Korisnicko ime i lozinka nisu tacni. Pokusajte ponovo.";
-                file_put_contents("logout.txt", $_SESSION['LOGIN_FAIL']);
                 render('login');
             }
         }

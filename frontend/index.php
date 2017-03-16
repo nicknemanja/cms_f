@@ -28,6 +28,9 @@ switch ($view) {
     case 'logout':
         logout();
         break;
+    case 'articles':
+        articles();
+        break;
     default :
         index();
 }
@@ -46,4 +49,8 @@ function login() {
 
 function logout() {
     UserController::logout();
+}
+
+function articles(){
+    ArticleController::showArticles();
 }

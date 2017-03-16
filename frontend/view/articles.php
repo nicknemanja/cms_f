@@ -1,4 +1,1 @@
-<?php
-
-//TODO Lista artikala sa pagination-om
-//uokvirena u div
+<h1>Članci početna</h1>

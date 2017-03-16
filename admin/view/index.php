@@ -4,7 +4,7 @@ if(isset($_SESSION['LOGIN_SUCCESS'])){
     unset($_SESSION['LOGIN_SUCCESS']);
 }
 
-$articles = Article::getList(HOMEPAGE_NUM_OF_ARTICLES);
+//$articles = Article::getList(HOMEPAGE_NUM_OF_ARTICLES);
 
 //TODO prikazati tabelarno sa pagination-om
 
@@ -12,4 +12,4 @@ $articles = Article::getList(HOMEPAGE_NUM_OF_ARTICLES);
 
 
 
-<h1>Index</h1>
+<h1>Index na adminu</h1>

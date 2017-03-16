@@ -17,7 +17,7 @@ function getDirContents($dir, &$results = array()) {
 
 spl_autoload_register(function($class) {
     $files = [];
-    getDirContents('../frontend', $files);
+    getDirContents('../admin', $files);
     foreach ($files as $value) {
         if (strpos($value, $class . '.php') !== false) {
             require $value;

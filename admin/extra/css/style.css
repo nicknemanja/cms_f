@@ -1,0 +1,33 @@
+body{
+    background-color: #fcfae8 !important;
+    margin: 2%;
+}
+
+.errorMessageDiv{
+    background-color: #FFCCCC;
+    margin: 2%;
+}
+
+#mainMenu{
+    margin-top: 2%;
+}
+
+#registrationForm, #loginForm{
+    border: 1px solid #e0e0e0;
+    border-radius: 1%;
+    padding: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}

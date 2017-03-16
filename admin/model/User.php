@@ -22,6 +22,7 @@ class User {
 
     public static function isLoggedIn() {
         if (isset($_SESSION['isLoggedIn'])) {
+            //TODO Pred
             return $_SESSION['isLoggedIn'];
         }
         return false;

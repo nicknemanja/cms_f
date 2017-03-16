@@ -12,6 +12,8 @@ class User {
 
     static function login($username, $password) {
         //TODO uraditi logiku logina i vratiti boolean
+        var_dump("login na user modelu na frontendu");
+        die();
         return true;
     }
 

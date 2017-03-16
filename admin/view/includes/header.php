@@ -38,7 +38,9 @@
                         <a class="navbar-brand" href="index.php">Početna</a>
                     </div>
                     <ul class="nav navbar-nav">
-
+                        <?php if(User::isLoggedIn()) { ?>
+                            
+                        <?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (!User::isLoggedIn()) { ?>
