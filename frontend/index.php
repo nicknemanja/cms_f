@@ -12,24 +12,17 @@ error_reporting(E_ALL);
 
 require 'init.php';
 
-$view = isset($_GET['view']) ? $_GET['view'] : '';
+$view = isset($_GET['view']) ? filter_input(INPUT_GET, 'view') : '';
 
 switch ($view) {
-
     case '':
         index();
         break;
     case 'index':
         index();
         break;
-    case 'login':
-        login();
-        break;
-    case 'logout':
-        logout();
-        break;
     case 'articles':
-        articles();
+        showArticles();
         break;
     default :
         index();
@@ -39,18 +32,6 @@ function index() {
     render('index');
 }
 
-function login() {
-
-    $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-
-    UserController::login($username, $password);
-}
-
-function logout() {
-    UserController::logout();
-}
-
-function articles(){
+function showArticles(){
     ArticleController::showArticles();
 }

@@ -3,6 +3,19 @@ if (isset($_SESSION['LOGOUT_SUCCESS'])) {
     echo '<div class="errorMessageDiv">' . $_SESSION['LOGOUT_SUCCESS'] . '</div>';
     unset($_SESSION['LOGOUT_SUCCESS']);
 }
+
+if (isset($_SESSION['LOGOUT_SUCCESS'])) {
+    echo '<div class="errorMessageDiv">' . $_SESSION['LOGOUT_SUCCESS'] . '</div>';
+    unset($_SESSION['LOGOUT_SUCCESS']);
+}
+
+if (isset($_SESSION['LOGIN_PARAMS_EMPTY'])) {
+    echo '<div class="errorMessageDiv">' . $_SESSION['LOGIN_PARAMS_EMPTY'] . '</div>';
+    unset($_SESSION['LOGIN_PARAMS_EMPTY']);
+}
+
+'loginParamsEmpty'
+
 ?>
 <div id="loginForm">
     <form action="index.php?view=login" method="POST">

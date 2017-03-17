@@ -3,7 +3,11 @@
     <type>org.netbeans.modules.php.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
+<<<<<<< HEAD
+            <name>cms</name>
+=======
             <name>cms_f</name>
+>>>>>>> 0d93f3224c924016deebf66b6b595e497cca682c
         </data>
     </configuration>
 </project>

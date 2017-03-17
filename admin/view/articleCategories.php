@@ -1,2 +1,1 @@
-<?php
-
+<h1>Kategorije clanaka stranica</h1>

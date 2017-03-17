@@ -1,2 +1,1 @@
-<?php
-
+<h1>Jezici stranica</h1>
