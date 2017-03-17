@@ -1,3 +1,1 @@
-<?php
-
-//TODO kontakt stranica
+<h1>Kontakt stranica</h1>

@@ -14,8 +14,12 @@ if (isset($_SESSION['LOGIN_PARAMS_EMPTY'])) {
     unset($_SESSION['LOGIN_PARAMS_EMPTY']);
 }
 
-'loginParamsEmpty'
+if (isset($_SESSION['MUST_BE_LOGGED_IN'])) {
+    echo '<div class="errorMessageDiv">' . $_SESSION['MUST_BE_LOGGED_IN'] . isset($_SESSION['REQUESTED_PAGE']) ? ($_SESSION['REQUESTED_PAGE'] . '.php') : '' . '</div>';
+    unset($_SESSION['MUST_BE_LOGGED_IN']);
+}
 
+'loginParamsEmpty'
 ?>
 <div id="loginForm">
     <form action="index.php?view=login" method="POST">

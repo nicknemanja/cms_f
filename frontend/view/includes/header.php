@@ -38,6 +38,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href = "index.php">Početna</a></li>
                         <li><a href = "index.php?view=articles">Clanci</a></li>
+                        <li><a href = "index.php?view=contact">Kontakt</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href = "../admin/index.php?view=login"><span class = "glyphicon glyphicon glyphicon glyphicon-user"></span>Admin</a></li>
