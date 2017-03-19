@@ -1,19 +1,17 @@
 <?php
 
+
+
 class ArticleController {
 
-    public static function showArticles() {
+    public static function showArticleList() {
         $articles = ArticleController::getList();
-
-        var_dump("artikli na kontroleru", $articles);
-        die();
-        $_REQUEST['articles'] = $articles;
+        $_SESSION['articles'] = $articles;
         render("articles");
     }
 
     public static function getList() {
-        $list = Article::getList();
-        return $list;
+        return Article::getList();
     }
 
 }

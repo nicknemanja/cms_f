@@ -26,6 +26,5 @@ spl_autoload_register(function($class) {
 });
 
 function render($page, $params = []) {
-  
     header("Location: render.php?view=" . $page);
 }

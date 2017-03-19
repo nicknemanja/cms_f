@@ -4,14 +4,14 @@
         <meta charset="UTF-8"/>
         <title>
             <?php
-            if (!isset($_SESSION)) {
-                session_start();
-            }
-
             require 'init.php';
 
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
+
+            if (!isset($_SESSION)) {
+                session_start();
+            }
             ?>
         </title>
 
@@ -24,9 +24,11 @@
 
 
         <!-- ---------------------------------------JavaScript-----------------------------------------  -->
-
+        <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
         crossorigin="anonymous"></script>
+
+        <script src="js/functionsArticle.js"></script>
 
     </head>
     <body>
@@ -35,7 +37,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.php">Početna</a>
+                        <a class="navbar-brand" href="index.php?view=index">Početna</a>
                     </div>
                     <ul class="nav navbar-nav">
                         <?php if (User::isLoggedIn()) { ?>

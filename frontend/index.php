@@ -34,7 +34,7 @@ function index() {
 }
 
 function showArticles() {
-    ArticleController::showArticles();
+    ArticleController::showArticleList();
 }
 
 function showContact() {

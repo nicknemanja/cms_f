@@ -2,30 +2,52 @@
 
 class User {
 
+    public $id;
+    public $username;
+    public $password;
+    public $name;
+    public $isAdmin;
     public $isLoggedIn = false;
 
     //parametri ostali
 
     public function __construct($params = array()) {
-        
+        $this->id = isset($params['id_user']) ? $params['id_user'] : -1;
+        $this->username = isset($params['username']) ? $params['username'] : -1;
+        $this->password = isset($params['password']) ? $params['password'] : -1;
+        $this->name = isset($params['name']) ? $params['name'] : -1;
+        $this->isAdmin = isset($params['isAdmin']) ? $params['isAdmin'] : -1;
+
+        $this->isLoggedIn = false;
     }
 
     static function login($username, $password) {
-        //TODO uraditi logiku logina i vratiti boolean
-        return true;
+        $hashedPassword = hash('sha512', $password);
+
+        $user = User::getByUsername($username);
+
+        return ($user->username === $username && strtolower($user->password) === strtolower($hashedPassword) && $user->isAdmin == true);
     }
 
     static function getByUsername($username) {
-        //komunikacija sa bazom...
-        return "";
+        try {
+            //komunikacija sa bazom...
+            $pdo = DB_Pdo::getPdoConnection();
+            $stmt = $pdo->prepare(User::$SQL_SELECT_BY_USERNAME);
+            $stmt->bindParam('username', $username);
+            $stmt->execute();
+
+            return new User($stmt->fetch());
+        } catch (PDOException $pdoe) {
+            var_dump("Greska u getByUsername", $pdoe);
+            return new User();
+        }
     }
 
     public static function isLoggedIn() {
-        if (isset($_SESSION['isLoggedIn'])) {
-            //TODO Pred
-            return $_SESSION['isLoggedIn'];
-        }
-        return false;
+        return (isset($_SESSION['isLoggedIn']) && isset($_SESSION['isAdmin']) && $_SESSION['isLoggedIn'] == true && $_SESSION['isAdmin'] == true );
     }
+
+    private static $SQL_SELECT_BY_USERNAME = "SELECT * FROM user where username = :username AND status = 1 AND active = 1";
 
 }

@@ -23,6 +23,7 @@ class UserController {
 
     static function logout() {
         $_SESSION['isLoggedIn'] = false;
+        $_SESSION['isAdmin'] = false;
         unset($_SESSION['username']);
         unset($_SESSION['user']);
         $_SESSION['LOGOUT_SUCCESS'] = "Uspjesno ste se izlogovali.";

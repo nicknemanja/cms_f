@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
 require 'init.php';
 
-$view = isset($_GET['view']) ? $_GET['view'] : '';
+$view = isset($_GET['view']) ? filter_input(INPUT_GET, 'view') : '';
 
 switch ($view) {
 
@@ -37,6 +37,8 @@ switch ($view) {
         break;
     case 'articles':
         articles();
+    case 'article':
+        singleArticle();
         break;
     default :
         index();
@@ -67,10 +69,18 @@ function menuItems() {
     MenuItemController::showMenuItems();
 }
 
-function itemCategories(){
+function itemCategories() {
     ArticleCategoryController::showItemCategories();
 }
 
 function articles() {
-    ArticleController::showArticles();
+    ArticleController::showArticleList();
+}
+
+function singleArticle() {
+    
+    $action = isset($_GET['action']) ? filter_input(INPUT_GET, 'action') : '';
+    $id = isset($_GET['id']) ? filter_input(INPUT_GET, 'id') : '';
+
+    ArticleController::showSingleArticle($action, $id);
 }

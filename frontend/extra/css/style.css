@@ -8,6 +8,11 @@ body{
     margin: 2%;
 }
 
+.ajaxMessagesDiv{
+    background-color: #347C2C;
+    margin: 2%;
+}
+
 #mainMenu{
     margin-top: 2%;
 }
