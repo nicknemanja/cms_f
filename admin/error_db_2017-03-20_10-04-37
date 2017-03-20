@@ -1,0 +1,9 @@
+exception 'PDOException' with message 'SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+' in C:\wamp\www\cms_f\admin\db\DB_Pdo.php:11
+Stack trace:
+#0 C:\wamp\www\cms_f\admin\db\DB_Pdo.php(11): PDO->__construct('mysql:host=loca...', 'test', 'test')
+#1 C:\wamp\www\cms_f\admin\model\Article.php(80): DB_Pdo::getPdoConnection()
+#2 C:\wamp\www\cms_f\admin\controller\ArticleController.php(11): Article::insert(Object(Article))
+#3 C:\wamp\www\cms_f\admin\index.php(105): ArticleController::insertNew(Array)
+#4 C:\wamp\www\cms_f\admin\index.php(19): insertNewArticle()
+#5 {main}

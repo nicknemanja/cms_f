@@ -32,7 +32,7 @@ class Article {
 
             return $list;
         } catch (PDOException $pdoe) {
-            var_dump($pdoe);
+            log_db_error($pdoe);
             return null;
         }
     }
@@ -51,7 +51,7 @@ class Article {
             }
             return null;
         } catch (PDOException $pdoe) {
-            var_dump($pdoe);
+            log_db_error($pdoe);
             return null;
         }
     }
@@ -68,20 +68,37 @@ class Article {
             $stmt = $pdo->prepare(Article::$SQL_DELETE_BY_ID);
 
             $stmt->bindParam(':id', $id);
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                return false;
-            }
+            return $stmt->execute();
         } catch (PDOException $pdoe) {
-            file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $pdoe);
+            log_db_error($pdoe);
             return false;
         }
+    }
+
+    public static function insert($article) {
+        try {
+            $pdo = DB_Pdo::getPdoConnection();
+            $stmt = $pdo->prepare(Article::$SQL_INSERT);
+
+            $stmt->bindParam(":title", $article->title);
+            $stmt->bindParam(":content", $article->content);
+
+            return $stmt->execute();
+            
+        } catch (PDOException $pdoe) {
+            Article::log_db_error($pdoe);
+            return false;
+        }
+    }
+
+    public static function log_db_error($message) {
+        file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $message);
     }
 
     static $LIMIT = 10;
     static $SQL_SELECT_BY_ID = "SELECT * FROM article WHERE id_article = :id LIMIT 1";
     static $SELECT_LIST = "SELECT * FROM article WHERE is_shown = 1 AND active = 1";
     static $SQL_DELETE_BY_ID = "UPDATE article SET active = 0 WHERE id_article = :id";
+    static $SQL_INSERT = "INSERT INTO article(title,content) VALUES (:title, :content)";
 
 }

@@ -29,6 +29,8 @@
         crossorigin="anonymous"></script>
 
         <script src="js/functionsArticle.js"></script>
+        
+        <script src="../ckeditor/ckeditor.js"></script>
 
     </head>
     <body>

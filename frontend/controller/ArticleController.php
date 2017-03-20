@@ -1,7 +1,5 @@
 <?php
 
-
-
 class ArticleController {
 
     public static function showArticleList() {

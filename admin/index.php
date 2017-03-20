@@ -12,6 +12,16 @@ require 'init.php';
 
 $view = isset($_GET['view']) ? filter_input(INPUT_GET, 'view') : '';
 
+$actionFromPost = isset($_POST['action']) ? filter_input(INPUT_POST, 'action') : '';
+
+switch ($actionFromPost) {
+    case 'insertNewArticle':
+        insertNewArticle();
+        break;
+    default :
+        break;
+}
+
 switch ($view) {
 
     case '':
@@ -78,9 +88,19 @@ function articles() {
 }
 
 function singleArticle() {
-    
+
     $action = isset($_GET['action']) ? filter_input(INPUT_GET, 'action') : '';
     $id = isset($_GET['id']) ? filter_input(INPUT_GET, 'id') : '';
 
     ArticleController::showSingleArticle($action, $id);
+}
+
+function insertNewArticle() {
+    //podaci u $_POST
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $params = [];
+    $params['title'] = $title;
+    $params['content'] = $content;
+    ArticleController::insertNew($params);
 }
