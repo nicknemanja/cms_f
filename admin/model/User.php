@@ -16,7 +16,7 @@ class User {
         $this->username = isset($params['username']) ? $params['username'] : -1;
         $this->password = isset($params['password']) ? $params['password'] : -1;
         $this->name = isset($params['name']) ? $params['name'] : -1;
-        $this->isAdmin = isset($params['isAdmin']) ? $params['isAdmin'] : -1;
+        $this->isAdmin = isset($params['is_admin']) ? $params['is_admin'] : -1;
 
         $this->isLoggedIn = false;
     }
@@ -44,10 +44,28 @@ class User {
         }
     }
 
+    static function getList($limit = 10) {
+        try {
+            $pdo = DB_Pdo::getPdoConnection();
+            $stmt = $pdo->query(User::$SQL_SELECT_LIST);
+            $stmt->execute();
+            $list = [];
+            $row = null;
+            while ($row = $stmt->fetch()) {
+                $list[] = new User($row);
+            }
+            return $list;
+        } catch (PDOException $pdoe) {
+            var_dump("Greska u getByUsername", $pdoe);
+            return null;
+        }
+    }
+
     public static function isLoggedIn() {
         return (isset($_SESSION['isLoggedIn']) && isset($_SESSION['isAdmin']) && $_SESSION['isLoggedIn'] == true && $_SESSION['isAdmin'] == true );
     }
 
     private static $SQL_SELECT_BY_USERNAME = "SELECT * FROM user where username = :username AND status = 1 AND active = 1";
+    private static $SQL_SELECT_LIST = "SELECT * FROM user WHERE status = 1 AND active = 1";
 
 }

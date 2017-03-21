@@ -39,6 +39,9 @@ switch ($view) {
     case 'users':
         users();
         break;
+    case 'user':
+        singleUser();
+        break;
     case 'menuItems':
         menuItems();
         break;
@@ -73,6 +76,14 @@ function logout() {
 
 function users() {
     UserController::showUsers();
+}
+
+function singleUser() {
+
+    $action = isset($_GET['action']) ? filter_input(INPUT_GET, 'action') : '';
+    $id = isset($_GET['id']) ? filter_input(INPUT_GET, 'id') : '';
+
+    UserController::showSingleUser($action, $id);
 }
 
 function menuItems() {

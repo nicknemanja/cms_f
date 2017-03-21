@@ -28,3 +28,36 @@ function editArticle(id) {
         echo("Doslo je do greske prilikom izmjene artikla. Pokusajte ponovo.");
     }
 }
+
+function deleteUser(id) {
+    alert("Uraditi deleteUser");
+    try {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajaxMessages").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "index.php?view=user&action=delete&id=" + id, true);
+        xmlhttp.send();
+    } catch (e) {
+        echo("Doslo je do greske prilikom brisanja korisnika. Pokusajte ponovo.");
+
+    }
+}
+
+function editUser(id) {
+    alert("Uraditi editUser");
+    try {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("ajaxMessages").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "index.php?view=user&action=edit&id=" + id, true);
+        xmlhttp.send();
+    } catch (e) {
+        echo("Doslo je do greske prilikom izmjene korisnika. Pokusajte ponovo.");
+    }
+}

@@ -5,11 +5,11 @@ class ArticleController {
     public static function insertNew($params) {
         //filtering article params from form
         foreach ($params as $key => $value) {
-            if ($key !== 'content') {
+            //if ($key !== 'content') {
                 $value = htmlspecialchars($value);
-            }
-
-            $singleParam = htmlspecialchars($singleParam);
+            //}
+        
+            //$singleParam = htmlspecialchars($singleParam);
         }
         $article = new Article($params);
         if (Article::insert($article)) {

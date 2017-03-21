@@ -1,9 +1,40 @@
 <?php
 
 class UserController {
+    
+
+    static function showSingleUser($action = '', $id = '') {
+        switch ($action) {
+            case 'delete':
+                if (User::deleteById($id)) {
+                    echo "Uspjesno ste obrisali korisnika!";
+                } else {
+                    echo "Brisanje korisnika nije uspjelo. Pokusajte ponovo.";
+                }
+                break;
+            case 'edit':
+                $user = UserController::getById($id);
+                if ($user === null) {
+                    //ajax response
+                    echo "Zahtjevani korisnik se ne nalazi u bazi. Pokusajte ponovo.";
+                    die();
+                }
+                $_SESSION['userForEditing'] = $article;
+                $_SESSION['actionForUser'] = 'edit';
+                render('user');
+                break;
+            case 'new':
+                $_SESSION['actionForUser'] = 'new';
+                render('user');
+                die();
+                break;
+            default :
+                UserController::showUserList();
+        }
+    }
 
     static function getList() {
-        
+        return User::getList();
     }
 
     static function isLoggedIn() {
@@ -74,6 +105,8 @@ class UserController {
             $_SESSION['MUST_BE_LOGGED_IN'] = 'Morate biti logovani za pristup ';
             render('login');
         } else {
+            $users = UserController::getList();
+            $_SESSION['usersForShowing'] = $users;
             render('users');
         }
     }
