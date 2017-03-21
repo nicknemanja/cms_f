@@ -6,9 +6,8 @@ class ArticleController {
         //filtering article params from form
         foreach ($params as $key => $value) {
             //if ($key !== 'content') {
-                $value = htmlspecialchars($value);
+            $value = htmlspecialchars($value);
             //}
-        
             //$singleParam = htmlspecialchars($singleParam);
         }
         $article = new Article($params);
@@ -50,6 +49,12 @@ class ArticleController {
                 break;
             case 'edit':
                 $article = ArticleController::getById($id);
+
+                $json = json_encode((array) $article);
+                ovako vratiti na view pa prikazati u formi
+                var_dump($json);
+                die();
+
                 if ($article === null) {
                     //ajax response
                     echo "Zahtjevani artikl se ne nalazi u bazi. Pokusajte ponovo.";

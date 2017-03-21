@@ -47,7 +47,6 @@ function deleteUser(id) {
 }
 
 function editUser(id) {
-    alert("Uraditi editUser");
     try {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {

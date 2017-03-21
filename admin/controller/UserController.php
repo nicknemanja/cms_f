@@ -19,7 +19,7 @@ class UserController {
                     echo "Zahtjevani korisnik se ne nalazi u bazi. Pokusajte ponovo.";
                     die();
                 }
-                $_SESSION['userForEditing'] = $article;
+                $_SESSION['userForEditing'] = $user;
                 $_SESSION['actionForUser'] = 'edit';
                 render('user');
                 break;
