@@ -48,11 +48,24 @@ class ArticleController {
                 }
                 break;
             case 'edit':
+                $arrayForJson = [];
                 $article = ArticleController::getById($id);
 
-                $json = json_encode((array) $article);
-                ovako vratiti na view pa prikazati u formi
-                var_dump($json);
+                $arrayForJson['article'] = $article;
+                $arrayForJson['action'] = 'akcija 10';
+                $arrayForJson['id'] = 120;
+
+
+
+                $json = json_encode((array) $arrayForJson);
+
+                $decodedJson = json_decode($json, true);
+
+                //ovako vratiti na view pa prikazati u formi
+                var_dump("JSON:", $json);
+                echo "<br><br><br>";
+                ovako uraditi prenos podataka nazad na formu
+                var_dump("DECODED JSON:", $decodedJson['article']['title']);
                 die();
 
                 if ($article === null) {
