@@ -49,12 +49,15 @@ class ArticleController {
                 break;
             case 'edit':
                 $article = ArticleController::getById($id);
-
-                $json = json_encode((array) $article);
-                ovako vratiti na view pa prikazati u formi
-                var_dump($json);
-                die();
-
+//                $arrayForJson['article'] = $article;
+//                $arrayForJson['action'] = 'akcija 10';
+//                $arrayForJson['id'] = 120;
+//                $json = json_encode((array) $arrayForJson);
+//                //true vraca niz, bez true vraca StdClass
+//                $decodedJson = json_decode($json, true);
+//                //ovako vratiti na view pa prikazati u formi
+//                var_dump("DECODED JSON:", $decodedJson['article']['title']);
+//                die();
                 if ($article === null) {
                     //ajax response
                     echo "Zahtjevani artikl se ne nalazi u bazi. Pokusajte ponovo.";

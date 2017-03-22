@@ -13,6 +13,9 @@ class UserController {
                 }
                 break;
             case 'edit':
+                staviti u sesiju uzetog korisnika i redirekciju uraditi na 
+                stranicu za jednog korisnika i popuniti podatke na formi
+                uraditi popunjavanje forme kao sto je uradjeno sa clancima
                 $user = UserController::getById($id);
                 if ($user === null) {
                     //ajax response

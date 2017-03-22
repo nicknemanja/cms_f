@@ -16,6 +16,8 @@ if (isset($_SESSION['ARTICLE_DELETED'])) {
 
 $articles = isset($_SESSION['articles']) ? $_SESSION['articles'] : [];
 ?>
+
+dodati filtere po kategorijama (ajax uraditi a json podatke vratiti ukljucujuci i broj clanaka u toj kategoriji)
 <div id="tableArticles">
     <table class="table table-hover">
         <thead>

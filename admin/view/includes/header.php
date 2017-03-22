@@ -29,7 +29,7 @@
         crossorigin="anonymous"></script>
 
         <script src="js/functionsArticle.js"></script>
-        
+
         <script src="../ckeditor/ckeditor.js"></script>
 
     </head>
@@ -47,7 +47,8 @@
                             <li><a href = "index.php?view=menuItems"><span class = "glyphicon glyphicon glyphicon-user"></span>Meni stavke</a></li>
                             <li><a href = "index.php?view=itemCategories"><span class = "glyphicon glyphicon-folder-close"></span>Kategorije clanaka</a></li>
                             <li><a href = "index.php?view=articles"><span class = "glyphicon glyphicon-file"></span>Clanci</a></li>
-                        <?php } ?>
+                        <?php } procitati meni item-e iz baze i prikazati ovdje..ako ima vise od dvije
+                                prikazati padajuci meni sa nazivom ostale meni stavke ili ih prikazati u padajucem meniju>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (!User::isLoggedIn()) { ?>

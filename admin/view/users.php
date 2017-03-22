@@ -4,6 +4,8 @@
 $users = isset($_SESSION['usersForShowing']) ? $_SESSION['usersForShowing'] : null;
 
 if ($users === null) {
+    
+    dodati blokiranje korisnika putem ajaxa
     echo '<div class="errorMessageDiv">' . 'Došlo je do greške prilikom prikaza korisnika' . '</div>';
 }
 
@@ -19,6 +21,7 @@ if ($users !== null) {
                 <th>Admin</th>
                 <th>Izmjeni</th>
                 <th>Obrisi</th>
+                
             </tr>
         </thead>
         <tbody>
