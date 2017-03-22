@@ -1,6 +1,7 @@
 <?php
 $action = isset($_SESSION['actionForArticle']) ? $_SESSION['actionForArticle'] : '';
 $article = null;
+$category = null;
 $title = null;
 $content = null;
 $params = null;
@@ -23,6 +24,7 @@ switch ($action) {
             unset($_SESSION['articleForEditing']);
             $title = $article->title;
             $content = $article->content;
+            $category = $article->category;
         }
         break;
     case 'new':
@@ -40,6 +42,10 @@ switch ($action) {
 
 <form method="POST" action="index.php?action=insertNewArticle">
     <input type="hidden" name="action" value="insertNewArticle">
+    <div class="form-group">
+        <label for="title">Kategorija:</label>
+        <input type="text" class="form-control" name="category" value="<?php echo ($category !== null) ? $title : '' ?>">
+    </div>
     <div class="form-group">
         <label for="title">Naslov:</label>
         <input type="text" class="form-control" name="title" value="<?php echo ($title !== null) ? $title : '' ?>">

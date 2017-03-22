@@ -29,6 +29,18 @@ class User {
 
         return ($user->username === $username && strtolower($user->password) === strtolower($hashedPassword) && $user->isAdmin == true);
     }
+    
+    static function insert($user){
+        var_dump("Uraditi User::insert()");
+        //return User::insert($user);
+        die();
+    }
+    
+    static function update($update){
+        var_dump("Uraditi User::update");
+        //return User::update($user);
+        die();
+    }
 
     static function getByUsername($username) {
         try {

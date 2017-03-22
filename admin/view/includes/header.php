@@ -47,7 +47,24 @@
                             <li><a href = "index.php?view=menuItems"><span class = "glyphicon glyphicon glyphicon-user"></span>Meni stavke</a></li>
                             <li><a href = "index.php?view=itemCategories"><span class = "glyphicon glyphicon-folder-close"></span>Kategorije clanaka</a></li>
                             <li><a href = "index.php?view=articles"><span class = "glyphicon glyphicon-file"></span>Clanci</a></li>
-                        <?php } ?>
+                            <?php
+                        }
+                        $menuItemList = MenuItemController::getList();
+                        if (count($menuItemList) > 0) {
+                            ?>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dodatne meni stavke<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    foreach ($menuItemList as $menuItem) {
+                                        echo '<li><a href="#">' . $menuItem->title . '</a></li>';
+                                    }
+                                    ?>
+                                </ul>
+                            </li>
+                            <?php
+                        }
+                        ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (!User::isLoggedIn()) { ?>
