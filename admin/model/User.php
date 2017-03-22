@@ -6,6 +6,7 @@ class User {
     public $username;
     public $password;
     public $name;
+    public $idUserRole;
     public $isAdmin;
     public $isLoggedIn = false;
 
@@ -17,7 +18,7 @@ class User {
         $this->password = isset($params['password']) ? $params['password'] : -1;
         $this->name = isset($params['name']) ? $params['name'] : -1;
         $this->isAdmin = isset($params['is_admin']) ? $params['is_admin'] : -1;
-
+        $this->idUserRole = isset($params['fk_id_user_role']) ? $params['fk_id_user_role'] : -1;
         $this->isLoggedIn = false;
     }
 
@@ -65,6 +66,21 @@ class User {
         return (isset($_SESSION['isLoggedIn']) && isset($_SESSION['isAdmin']) && $_SESSION['isLoggedIn'] == true && $_SESSION['isAdmin'] == true );
     }
 
+    public static function getById($id) {
+        try {
+            $pdo = DB_Pdo::getPdoConnection();
+            $stmt = $pdo->prepare(User::$SQL_SELECT_BY_ID);
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            $row = $stmt->fetch();
+            return new User($row);
+        } catch (PDOException $pdoe) {
+            var_dump("Greska u getByUsername", $pdoe);
+            return null;
+        }
+    }
+
+    private static $SQL_SELECT_BY_ID = "SELECT * FROM user WHERE id_user = :id";
     private static $SQL_SELECT_BY_USERNAME = "SELECT * FROM user where username = :username AND status = 1 AND active = 1";
     private static $SQL_SELECT_LIST = "SELECT * FROM user WHERE status = 1 AND active = 1";
 

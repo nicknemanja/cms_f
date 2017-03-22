@@ -17,7 +17,8 @@ if (isset($_SESSION['ARTICLE_DELETED'])) {
 $articles = isset($_SESSION['articles']) ? $_SESSION['articles'] : [];
 ?>
 
-dodati filtere po kategorijama (ajax uraditi a json podatke vratiti ukljucujuci i broj clanaka u toj kategoriji)
+<div class="errorMessageDiv" id="ajaxMessages"></div>
+
 <div id="tableArticles">
     <table class="table table-hover">
         <thead>
@@ -35,15 +36,13 @@ dodati filtere po kategorijama (ajax uraditi a json podatke vratiti ukljucujuci 
             <?php
             $rb = 1;
             foreach ($articles as $singleArticle) {
-                
                 ?>
                 <tr>
                     <td><?php echo $rb++ ?></td>
                     <td><?php echo $singleArticle->title ?></td>
                     <td><?php echo $singleArticle->content ?></td>
-
-                    <?php echo '<td><input type="button" value="Izmjeni" onclick="editArticle(' . $singleArticle->id . ')" class="btn btn-info btn-xs" ></td>' ?>
-                    <?php echo '<td><input type="button" value="Obrisi" onclick="deleteArticle(' . $singleArticle->id . ')" class="btn btn-danger btn-xs" ></td>' ?>
+                    <?php echo '<td><a href="index.php?view=article&action=edit&id=' . $singleArticle->id . '">Izmjeni</a></td>' ?>
+                    <?php echo '<td><button onclick=deleteArticle(' . $singleArticle->id . ') class="btn btn-danger btn-xs">Obrisi</button></td>' ?>
                 </tr>
 
             <?php } ?> 

@@ -1,11 +1,12 @@
 <?php
 
 class UserController {
-    
 
     static function showSingleUser($action = '', $id = '') {
         switch ($action) {
             case 'delete':
+                echo "pokusaj brisanja korisnika." . "akcija";
+                die();
                 if (User::deleteById($id)) {
                     echo "Uspjesno ste obrisali korisnika!";
                 } else {
@@ -13,17 +14,21 @@ class UserController {
                 }
                 break;
             case 'edit':
-                staviti u sesiju uzetog korisnika i redirekciju uraditi na 
-                stranicu za jednog korisnika i popuniti podatke na formi
-                uraditi popunjavanje forme kao sto je uradjeno sa clancima
+//                staviti u sesiju uzetog korisnika i redirekciju uraditi na 
+//                stranicu za jednog korisnika i popuniti podatke na formi
+//                uraditi popunjavanje forme kao sto je uradjeno sa clancima
                 $user = UserController::getById($id);
                 if ($user === null) {
                     //ajax response
                     echo "Zahtjevani korisnik se ne nalazi u bazi. Pokusajte ponovo.";
                     die();
                 }
+                $userRole = UserRole::getById($user->idUserRole);
                 $_SESSION['userForEditing'] = $user;
                 $_SESSION['actionForUser'] = 'edit';
+                $_SESSION['userRole'];
+                $userRole = UserRole::getById($user->idUserRole);
+                $_SESSION['userRole'] = $userRole;
                 render('user');
                 break;
             case 'new':
@@ -38,6 +43,10 @@ class UserController {
 
     static function getList() {
         return User::getList();
+    }
+
+    static function getById($id) {
+        return User::getById($id);
     }
 
     static function isLoggedIn() {

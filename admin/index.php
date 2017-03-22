@@ -18,12 +18,13 @@ switch ($actionFromPost) {
     case 'insertNewArticle':
         insertNewArticle();
         break;
-    default :
+    case 'insertNewUser':
+        insertNewUser();
         break;
+    default :
 }
 
 switch ($view) {
-
     case '':
         index();
         break;
@@ -50,6 +51,7 @@ switch ($view) {
         break;
     case 'articles':
         articles();
+        break;
     case 'article':
         singleArticle();
         break;
@@ -79,10 +81,9 @@ function users() {
 }
 
 function singleUser() {
-
+    var_dump("Poziv metode singleUser() u index.php");
     $action = isset($_GET['action']) ? filter_input(INPUT_GET, 'action') : '';
     $id = isset($_GET['id']) ? filter_input(INPUT_GET, 'id') : '';
-
     UserController::showSingleUser($action, $id);
 }
 
@@ -99,19 +100,34 @@ function articles() {
 }
 
 function singleArticle() {
-
     $action = isset($_GET['action']) ? filter_input(INPUT_GET, 'action') : '';
     $id = isset($_GET['id']) ? filter_input(INPUT_GET, 'id') : '';
-
     ArticleController::showSingleArticle($action, $id);
 }
 
+//functions for $_POST
 function insertNewArticle() {
     //podaci u $_POST
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+    $title = isset($_POST['title']) ? filter_input(INPUT_POST, 'title') : '';
+    $content = isset($_POST['content']) ? filter_input(INPUT_POST, 'content') : '';
     $params = [];
     $params['title'] = $title;
     $params['content'] = $content;
     ArticleController::insertNew($params);
+}
+
+function insertNewUser() {
+    $username = isset($_POST['username']) ? filter_input(INPUT_POST, 'username') : '';
+    $name = isset($_POST['name']) ? filter_input(INPUT_POST, 'name') : '';
+    $password = isset($_POST['password']) ? filter_input(INPUT_POST, 'password') : '';
+    $userTypeDescription = isset($_POST['userTypeDescription']) ? filter_input(INPUT_POST, 'userTypeDescription') : '';
+
+    $params = [];
+
+    $params['username'] = $username;
+    $params['name'] = $name;
+    $params['password'] = $password;
+    $params['userTypeDescription'] = $userTypeDescription;
+
+    UserController::
 }

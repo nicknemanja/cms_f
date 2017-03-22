@@ -34,10 +34,6 @@ switch ($action) {
         $content = $params['content'];
         break;
 }
-
-Prilikom dodavanja clanaka dodati i selekt box koji ce prikazivati kategorija clanaka
-pa prilikom unosa pokupiti i odabranu kategoriju i upisati u bazu.
-
 ?>
 
 

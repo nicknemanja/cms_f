@@ -30,7 +30,6 @@ function editArticle(id) {
 }
 
 function deleteUser(id) {
-    alert("Uraditi deleteUser");
     try {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -42,7 +41,6 @@ function deleteUser(id) {
         xmlhttp.send();
     } catch (e) {
         echo("Doslo je do greske prilikom brisanja korisnika. Pokusajte ponovo.");
-
     }
 }
 
@@ -55,7 +53,9 @@ function editUser(id) {
             }
         };
         xmlhttp.open("GET", "index.php?view=user&action=edit&id=" + id, true);
+        alert("Slanje zahtjeva: " + "index.php?view=user&action=edit&id=" + id);
         xmlhttp.send();
+        alert("Zahtjev poslat: " + "index.php?view=user&action=edit&id=" + id);
     } catch (e) {
         echo("Doslo je do greske prilikom izmjene korisnika. Pokusajte ponovo.");
     }

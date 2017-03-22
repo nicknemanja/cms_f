@@ -4,8 +4,8 @@
 $users = isset($_SESSION['usersForShowing']) ? $_SESSION['usersForShowing'] : null;
 
 if ($users === null) {
-    
-    dodati blokiranje korisnika putem ajaxa
+
+
     echo '<div class="errorMessageDiv">' . 'Došlo je do greške prilikom prikaza korisnika' . '</div>';
 }
 
@@ -21,7 +21,6 @@ if ($users !== null) {
                 <th>Admin</th>
                 <th>Izmjeni</th>
                 <th>Obrisi</th>
-                
             </tr>
         </thead>
         <tbody>
@@ -31,8 +30,8 @@ if ($users !== null) {
                     <td><?php echo $singleUser->name ?></td>
                     <td><?php echo $singleUser->username ?></td>
                     <td><?php echo ($singleUser->isAdmin === '1') ? "da" : "ne  " ?></td>
-                    <?php echo '<td><input type="button" value="Izmjeni" onclick="editUser(' . $singleUser->id . ')" class="btn btn-info btn-xs" ></td>' ?>
-                    <?php echo '<td><input type="button" value="Obrisi" onclick="deleteUser(' . $singleUser->id . ')" class="btn btn-danger btn-xs" ></td>' ?>
+                    <?php echo '<td><a href="index.php?view=user&action=edit&id=' . $singleUser->id . '">Izmjeni</a></td>' ?>
+                    <?php echo '<td><button onclick=deleteUser(' . $singleUser->id . ') class="btn btn-danger btn-xs">Obrisi</button></td>' ?>
                 </tr>
             <?php } ?>
         </tbody>
