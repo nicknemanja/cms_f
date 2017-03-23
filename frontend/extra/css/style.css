@@ -28,6 +28,15 @@ body{
 }
 
 #footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}
+
+
+#backup-of-footer {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -35,4 +44,4 @@ body{
   padding: 1rem;
   background-color: #efefef;
   text-align: center;
-}
+  }

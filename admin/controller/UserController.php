@@ -40,6 +40,16 @@ class UserController {
                 UserController::showUserList();
         }
     }
+    
+    static function insert($params = []){
+        $user = new User($params);
+        User::insert($user);
+    }
+    
+    static function update($params = []){
+        $user = new User($params);
+        User::update($user);
+    }
 
     static function getList() {
         return User::getList();

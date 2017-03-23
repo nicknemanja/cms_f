@@ -1,5 +1,11 @@
 <h1>Korisnici stranica</h1>
 
+<form action="index.php" method="get">
+    <input type="hidden" name="view" value="user">
+    <input type="hidden" name="action" value="new">
+    <input type="submit" class="btn btn-success" value="Novi korisnik"/> 
+</form>
+
 <?php
 $users = isset($_SESSION['usersForShowing']) ? $_SESSION['usersForShowing'] : null;
 
