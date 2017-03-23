@@ -84,7 +84,6 @@ class Article {
             $stmt->bindParam(":content", $article->content);
 
             return $stmt->execute();
-            
         } catch (PDOException $pdoe) {
             Article::log_db_error($pdoe);
             return false;
