@@ -18,7 +18,7 @@ class MenuItem {
     }
 
     public static function getList() {
-        
+
         try {
             $pdo = DB_Pdo::getPdoConnection();
             $stmt = $pdo->query(MenuItem::$SQL_SELECT_LIST);
@@ -30,7 +30,7 @@ class MenuItem {
             }
             return $list;
         } catch (PDOException $pdoe) {
-            log_db_error($pdoe);
+            MenuItem::log_db_error($pdoe);
             return null;
         }
     }
@@ -45,6 +45,24 @@ class MenuItem {
         die();
     }
 
+    public static function getById($id) {
+        try {
+            $pdo = DB_Pdo::getPdoConnection();
+            $stmt = $pdo->prepare(MenuItem::$SQL_SELECT_BY_ID);
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            return new ArticleCategory($stmt->fetch());
+        } catch (PDOException $pdoe) {
+            ArticleCategory::log_db_error($pdoe);
+            return null;
+        }
+    }
+
     private static $SQL_SELECT_LIST = "SELECT * FROM menu_item WHERE active = 1";
+    private static $SQL_SELECT_BY_ID = "SELECT * FROM menu_item WHERE id_menu_item = :id";
+
+    public static function log_db_error($message) {
+        file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $message);
+    }
 
 }

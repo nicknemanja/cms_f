@@ -28,3 +28,4 @@ spl_autoload_register(function($class) {
 function render($page) {
     header("Location: render.php?view=" . $page);
 }
+

@@ -10,8 +10,9 @@ class ArticleController {
             //}
             //$singleParam = htmlspecialchars($singleParam);
         }
-        $article = new Article($params);
+        $article = is_array($params) ? new Article($params) : $params;
         if (Article::insert($article)) {
+            
             $_SESSION['ARTICLE_CREATED'] = 'Uspjesno ste kreirali članak.';
             render('article');
             die();
@@ -21,6 +22,17 @@ class ArticleController {
             $_SESSION['actionForArticle'] = 'retryInsert';
             render('article');
             die();
+        }
+    }
+
+    public static function update($params) {
+        $article = is_array($params) ? new Article($params) : $params;
+        if(Article::update($article)){
+            $_SESSION['ARTICLE_EDITED'] = "Uspjesno ste izmjenili artikl.";
+            render('articles');
+        }else{
+            $_SESSION['ARTICLE_NOT_EDITED'] = "Izmjena artikla nije uspjela. Pokusajte ponovo.";
+            render('articles');
         }
     }
 
@@ -64,11 +76,16 @@ class ArticleController {
                     die();
                 }
                 $_SESSION['articleForEditing'] = $article;
+                $_SESSION['articleCategories'] = ArticleCategoryController::getList();
+                $_SESSION['menuItemList'] = MenuItemController::getList();
                 $_SESSION['actionForArticle'] = 'edit';
                 render('article');
                 break;
             case 'new':
                 $_SESSION['actionForArticle'] = 'new';
+                $_SESSION['articleCategories'] = ArticleCategoryController::getList();
+                $_SESSION['menuItemList'] = MenuItemController::getList();
+
                 render('article');
                 die();
                 break;

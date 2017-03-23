@@ -29,14 +29,14 @@ class User {
 
         return ($user->username === $username && strtolower($user->password) === strtolower($hashedPassword) && $user->isAdmin == true);
     }
-    
-    static function insert($user){
+
+    static function insert($user) {
         var_dump("Uraditi User::insert()");
         //return User::insert($user);
         die();
     }
-    
-    static function update($update){
+
+    static function update($update) {
         var_dump("Uraditi User::update");
         //return User::update($user);
         die();
@@ -95,5 +95,9 @@ class User {
     private static $SQL_SELECT_BY_ID = "SELECT * FROM user WHERE id_user = :id";
     private static $SQL_SELECT_BY_USERNAME = "SELECT * FROM user where username = :username AND status = 1 AND active = 1";
     private static $SQL_SELECT_LIST = "SELECT * FROM user WHERE status = 1 AND active = 1";
+
+    public static function log_db_error($message) {
+        file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $message);
+    }
 
 }

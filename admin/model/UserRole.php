@@ -45,4 +45,8 @@ class UserRole {
     public static $SQL_SELECT_LIST = "SELECT * FROM user_role WHERE active = 1";
     public static $SQL_BY_ID = "SELECT * FROM user_role WHERE id_user_role = :id";
 
+    public static function log_db_error($message) {
+        file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $message);
+    }
+
 }

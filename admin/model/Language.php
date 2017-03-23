@@ -26,11 +26,14 @@ class Language {
             }
             return $list;
         } catch (PDOException $pdoe) {
-            log_db_error($pdoe);
+            Language::log_db_error($pdoe);
             return null;
         }
     }
 
     private static $SQL_SELECT_LIST = "SELECT * FROM language WHERE active = 1";
-
+    
+    public static function log_db_error($message) {
+        file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $message);
+    }
 }

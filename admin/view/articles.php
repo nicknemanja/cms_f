@@ -26,6 +26,8 @@ $articles = isset($_SESSION['articles']) ? $_SESSION['articles'] : [];
                 <th>RB</th>
                 <th>Naslov</th>
                 <th>Sadrzaj</th>
+                <th>Kategorija</th>
+                <th>Meni stavka</th>
                 <th>Izmjeni</th>
                 <th>Obrisi</th>
             </tr>
@@ -41,6 +43,8 @@ $articles = isset($_SESSION['articles']) ? $_SESSION['articles'] : [];
                     <td><?php echo $rb++ ?></td>
                     <td><?php echo $singleArticle->title ?></td>
                     <td><?php echo $singleArticle->content ?></td>
+                    <td><?php echo $singleArticle->articleCategory ?></td>
+                    <td><?php echo $singleArticle->menuItem ?></td>
                     <?php echo '<td><a href="index.php?view=article&action=edit&id=' . $singleArticle->id . '">Izmjeni</a></td>' ?>
                     <?php echo '<td><button onclick=deleteArticle(' . $singleArticle->id . ') class="btn btn-danger btn-xs">Obrisi</button></td>' ?>
                 </tr>

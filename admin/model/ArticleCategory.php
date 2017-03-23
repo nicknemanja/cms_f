@@ -3,19 +3,12 @@
 class ArticleCategory {
 
     public $id = null;
-    public $idArticleCategory;
-    public $idMenuItem;
     public $title = null;
-    public $content = null;
-    public $status = null;
     public $isShown = null;
 
     public function __construct($params = []) {
-        $this->id = $isset($params['id_article_category']) ? $params['id_article_category'] : -1;
-        $this->idArticleCategory = isset($params['fk_id_article_category']) ? $params['fk_id_article_category'] : -1;
-        $this->idMenuItem = isset($params['fk_id_menu_item']) ? $params['fk_id_menu_item'] : -1;
+        $this->id = isset($params['id_article_category']) ? $params['id_article_category'] : -1;
         $this->title = isset($params['title']) ? $params['title'] : "default";
-        $this->content = isset($params['content']) ? $params['content'] : "default";
         $this->isShown = isset($params['is_shown']) ? $params['is_shown'] : -1;
     }
 
@@ -25,8 +18,6 @@ class ArticleCategory {
     }
 
     public static function getList() {
-        var_dump("Uraditi ArticleCategory::getList");
-        die();
         try {
             $pdo = DB_Pdo::getPdoConnection();
             $stmt = $pdo->query(ArticleCategory::$SQL_SELECT_LIST);
@@ -38,7 +29,7 @@ class ArticleCategory {
             }
             return $list;
         } catch (PDOException $pdoe) {
-            log_db_error($pdoe);
+            ArticleCategory::log_db_error($pdoe);
             return null;
         }
     }
@@ -52,7 +43,25 @@ class ArticleCategory {
         var_dump("Uraditi ArticleCategory::deleteById");
         die();
     }
+    
+    public static function getById($id){
+        try {
+            $pdo = DB_Pdo::getPdoConnection();
+            $stmt = $pdo->prepare(ArticleCategory::$SQL_SELECT_BY_ID);
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+            return new ArticleCategory($stmt->fetch());
+        } catch (PDOException $pdoe) {
+            ArticleCategory::log_db_error($pdoe);
+            return null;
+        }
+    }
 
     private static $SQL_SELECT_LIST = "SELECT * FROM article_category WHERE active = 1";
+    private static $SQL_SELECT_BY_ID = "SELECT * FROM article_category WHERE id_article_category = :id";
+
+    public static function log_db_error($message) {
+        file_put_contents("error_db_" . $date = date('Y-m-d_H-i-s'), $message);
+    }
 
 }

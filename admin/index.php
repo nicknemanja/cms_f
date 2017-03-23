@@ -14,11 +14,10 @@ $view = isset($_GET['view']) ? filter_input(INPUT_GET, 'view') : '';
 
 $actionFromPost = isset($_POST['action']) ? filter_input(INPUT_POST, 'action') : '';
 
-
-
 switch ($actionFromPost) {
-    case 'insertNewArticle':
-        insertNewArticle();
+    case 'editArticle':
+    case 'newArticle':
+        handleArticleAction();
         die();
     case 'newUser':
     case 'editUser':
@@ -119,6 +118,31 @@ function insertNewArticle() {
     ArticleController::insertNew($params);
 }
 
+function handleArticleAction() {
+
+    $params = [];
+    $action = isset($_POST['action']) ? filter_input(INPUT_POST, 'action') : "default";
+    $params['fk_id_article_category'] = isset($_POST['category']) ? filter_input(INPUT_POST, 'category') : "default";
+    $params['fk_id_menu_item'] = isset($_POST['menuItem']) ? filter_input(INPUT_POST, 'menuItem') : "default";
+    $params['title'] = isset($_POST['title']) ? filter_input(INPUT_POST, 'title') : "default";
+    $params['content'] = isset($_POST['content']) ? filter_input(INPUT_POST, 'content') : "default";
+    $params['is_shown'] = isset($_POST['isShown']) ? filter_input(INPUT_POST, 'isShown') : "-1";
+
+    switch ($action) {
+        case 'editArticle':
+            ArticleController::update($params);
+            die();
+            break;
+        case 'newArticle':
+            ArticleController::insertNew($params);
+            break;
+        default :
+            $_SESSION['ARTICLE_NOT_CREATED'] = "Doslo je do greske prilikom " . ($action === 'editArticle') ? "izmjene " : "dodavanja " . "članka";
+            render('article');
+            die();
+    }
+}
+
 function handleUserAction() {
 
     $params = [];
@@ -141,5 +165,4 @@ function handleUserAction() {
         default :
             echo "Doslo je do greske prilikom rada sa korisnikom.";
     }
-    
 }
